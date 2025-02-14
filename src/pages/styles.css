@@ -1,0 +1,316 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+
+.navbar-wow {
+  background-color: #343a40;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative; 
+  z-index: 10;
+}
+
+
+.navbar-logo {
+  width: 250px;  
+  height: 250px;
+  border-radius: 50%;  
+  margin-top: 30px;
+  object-fit: cover;   
+  position: absolute; 
+  top: -30px;  
+  left: -200%;  
+  transform: translateX(-50%);  
+  transition: transform 0.3s ease-in-out; 
+}
+
+.navbar-logo:hover {
+  transform: translateX(-50%) scale(1.1); 
+}
+
+.navbar {
+  height: 80px; 
+}
+
+.navbar-title {
+  font-weight: bold;  
+  font-size: 84px;  
+  color: #333;  
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff !important; 
+  font-size: 1rem;
+  padding: 0 15px; 
+}
+
+.nav-link-text {
+  margin-left: 5px; 
+}
+
+.cart-icon {
+  font-size: 1.8rem; 
+  margin-right: 5px; 
+}
+
+.home-page {
+  background-image: url('https://img.freepik.com/premium-photo/purple-background-with-camera-camera-with-purple-light_962508-19052.jpg'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 88vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.text-center {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.home-page h4 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.home-page .mb-4 {
+  text-align: center;
+}
+
+.home-page .d-flex img {
+  height: 300px; 
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.home-page .d-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-page .w-100 {
+  max-width: 100%;
+}
+
+
+.products-page {
+  background-image: url('https://as2.ftcdn.net/v2/jpg/06/83/72/43/1000_F_683724318_kQULkqM8cVAbZpWnbbf0Q80RG90Dlwqo.jpg'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 80vh; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.products-page h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.products-page section h3 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.products-page .card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.products-page .card img {
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.products-page .card-body {
+  text-align: center;
+  padding: 15px;
+}
+
+.products-page .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.products-page .card-text {
+  font-size: 1.1rem;
+  color: #28a745;
+}
+
+.products-page button {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.products-page button:hover {
+  background-color: #0056b3;
+}
+
+.addcart-page {
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/007/278/540/small_2x/success-delivery-illustration-laptop-with-open-website-app-for-order-tracking-with-map-fast-respond-delivery-package-shipping-on-mobile-e-store-isolated-on-white-background-free-vector.jpg'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 88vh;
+  padding: 40px;
+}
+
+.addcart-page h2 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.addcart-page .card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.addcart-page .card img {
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.addcart-page .card-body {
+  text-align: center;
+  padding: 15px;
+}
+
+.addcart-page .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.addcart-page .card-text {
+  font-size: 1.1rem;
+}
+
+.addcart-page button {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.addcart-page button:hover {
+  background-color: #0056b3;
+}
+
+.modal .modal-header {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal .modal-footer button {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal .modal-footer button:hover {
+  background-color: #0056b3;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.form-group input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+
+.addcart-page .cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.addcart-page .cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.addcart-page .cart-item .item-details {
+  flex-grow: 1;
+}
+
+.addcart-page .cart-item .item-details p {
+  margin: 0;
+}
+
+.addcart-page .remove-btn {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addcart-page .remove-btn:hover {
+  background-color: #c82333;
+}
+
+.addcart-page .quantity-btn {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addcart-page .quantity-btn:hover {
+  background-color: #218838;
+}
