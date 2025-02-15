@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import './styles.css';
+
 const productsData = {
   phones: [
     { id: 1, name: 'iPhone 13', price: '$799', image: 'https://media.croma.com/image/upload/v1708676410/Croma%20Assets/Communication/Mobiles/Images/249841_0_oldsz6.png' },
@@ -18,7 +19,6 @@ const productsData = {
     { id: 4, name: 'Lenovo ThinkPad X1', price: '$1299', image: 'https://store.lenovo.com/media/catalog/product/cache/90c9f6aca4e4b4913161c59294bbd070/2/0/20XWS1XJ00-1_1.webp' },
     { id: 5, name: 'Asus ZenBook 14', price: '$1099', image: 'https://m.media-amazon.com/images/I/71d0ewMRJNL._AC_UF1000,1000_QL80_.jpg' },
     { id: 6, name: 'Microsoft Surface Laptop 4', price: '$1299', image: 'https://radiant.in/wp-content/uploads/2023/06/Microsoft-Surface-Laptop-4-Banner.jpg' }
-
   ],
   headphones: [
     { id: 1, name: 'AirPods Pro', price: '$249', image: 'https://www.action.pk/cdn/shop/products/LYCiR8OBRB_2048x.jpg?v=1705925095' },
@@ -27,15 +27,14 @@ const productsData = {
     { id: 4, name: 'Sennheiser Momentum', price: '$399', image: 'https://cdn.head-fi.org/a/10284055.jpg' },
     { id: 5, name: 'JBL Live 650BTNC', price: '$199', image: 'https://nayejaisa.com/wp-content/uploads/2024/06/Images-1945.webp' },
     { id: 6, name: 'Beats Studio3 Wireless', price: '$349', image: 'https://m.media-amazon.com/images/I/61GIAZMkcDL._AC_UF1000,1000_QL80_.jpg' }
-
   ]
 };
 
 const exchangeRate = 83;
 
 function Products() {
-  const { category } = useParams(); 
-  const [cart, setCart] = useState([]); 
+  const { category } = useParams();
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -46,7 +45,7 @@ function Products() {
     if (price && typeof price === 'string') {
       return parseFloat(price.replace('$', '').replace(',', '')) * exchangeRate;
     }
-    return 0; 
+    return 0;
   };
 
   const addToCart = (product) => {
@@ -60,7 +59,7 @@ function Products() {
     }
 
     setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart)); 
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const getCategoryTitle = (category) => {
@@ -80,7 +79,6 @@ function Products() {
     <Container className="mt-4 products-page">
       <h2>{getCategoryTitle(category)}</h2>
 
-    
       {category === 'phones' || !category ? (
         <section>
           <h3>Mobile Phones</h3>
@@ -103,7 +101,6 @@ function Products() {
         </section>
       ) : null}
 
-    
       {category === 'laptops' || !category ? (
         <section>
           <h3>Laptops</h3>
