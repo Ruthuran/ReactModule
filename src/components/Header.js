@@ -6,7 +6,7 @@ import './styles.css';
 function Home() {
   return (
     <Container fluid className="home-page p-4">
-      <h2 className="text-center text-white mb-5">Welcome to Our Store</h2>
+      <h1 className="text-center heading-white mb-5">Welcome to SnapShop</h1>
 
       <Row className="justify-content-center">
         {/* Phones */}
@@ -51,7 +51,7 @@ function Home() {
 
       {/* Footer */}
       <footer className="text-center mt-5 py-3 border-top bg-light">
-        <p className="mb-0">&copy; 2025 Our Store. All rights reserved.</p>
+        <p className="mb-0">&copy; 2025 SnapShop. All rights reserved.</p>
       </footer>
     </Container>
   );
