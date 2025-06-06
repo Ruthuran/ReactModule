@@ -30,7 +30,7 @@ const productsData = {
   ]
 };
 
-const exchangeRate = 83;
+const exchangeRate = 83; // USD to INR
 
 function Products() {
   const { category } = useParams();
@@ -42,7 +42,7 @@ function Products() {
   }, []);
 
   const getPriceInINR = (price) => {
-    const usd = parseFloat(price.replace('$', '').replace(',', ''));
+    const usd = parseFloat(price.replace(/[^0-9.]/g, ''));
     const inr = usd * exchangeRate;
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -52,10 +52,10 @@ function Products() {
 
   const addToCart = (product) => {
     const updatedCart = [...cart];
-    const productIndex = updatedCart.findIndex(item => item.id === product.id);
+    const index = updatedCart.findIndex(item => item.id === product.id);
 
-    if (productIndex !== -1) {
-      updatedCart[productIndex].quantity += 1;
+    if (index !== -1) {
+      updatedCart[index].quantity += 1;
     } else {
       updatedCart.push({ ...product, quantity: 1 });
     }
@@ -65,25 +65,27 @@ function Products() {
   };
 
   const getCategoryTitle = (cat) => {
-    switch (cat) {
-      case 'phones': return 'Mobile Phones';
-      case 'laptops': return 'Laptops';
-      case 'headphones': return 'Headphones';
-      default: return 'All Products';
-    }
+    const titles = {
+      phones: 'Mobile Phones',
+      laptops: 'Laptops',
+      headphones: 'Headphones'
+    };
+    return titles[cat] || 'All Products';
   };
 
   const renderProductSection = (type, title) => (
-    <section key={type}>
-      <h3>{title}</h3>
-      <Row className="mt-4">
+    <section key={type} className="mb-5">
+      <h3 className="mb-4">{title}</h3>
+      <Row>
         {productsData[type].map((product) => (
-          <Col md={4} key={product.id} className="mb-4">
-            <Card>
+          <Col md={4} sm={6} xs={12} key={product.id} className="mb-4">
+            <Card className="h-100">
               <Card.Img variant="top" src={product.image} alt={product.name} />
-              <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>Price: {getPriceInINR(product.price)}</Card.Text>
+              <Card.Body className="d-flex flex-column justify-content-between">
+                <div>
+                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Text>Price: {getPriceInINR(product.price)}</Card.Text>
+                </div>
                 <Button variant="primary" onClick={() => addToCart(product)}>
                   Add to Cart
                 </Button>
@@ -100,7 +102,7 @@ function Products() {
 
   return (
     <Container className="mt-4 products-page">
-      <h2>{getCategoryTitle(category)}</h2>
+      <h2 className="mb-4">{getCategoryTitle(category)}</h2>
 
       {validCategory
         ? renderProductSection(category, getCategoryTitle(category))
