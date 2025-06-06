@@ -15,10 +15,9 @@ const productsData = {
   laptops: [
     { id: 1, name: 'MacBook Air', price: '$999', image: 'https://i.ebayimg.com/images/g/ZpYAAOSwFCZl5tBU/s-l400.png' },
     { id: 2, name: 'Dell XPS 13', price: '$1099', image: 'https://pckumar.in/wp-content/uploads/2024/12/OXN9345140001RIN.jpg' },
-    { id: 3, name: 'HP Spectre x360', price: '$1199', image: 'https://images.fonearena.com/blog/wp-content/uploads/2024/01/HP-Spectre-x360-16-inch-2-in-1-1024x509.jpeg' },
-    { id: 4, name: 'Lenovo ThinkPad X1', price: '$1299', image: 'https://store.lenovo.com/media/catalog/product/cache/90c9f6aca4e4b4913161c59294bbd070/2/0/20XWS1XJ00-1_1.webp' },
-    { id: 5, name: 'Asus ZenBook 14', price: '$1099', image: 'https://m.media-amazon.com/images/I/71d0ewMRJNL._AC_UF1000,1000_QL80_.jpg' },
-    { id: 6, name: 'Microsoft Surface Laptop 4', price: '$1299', image: 'https://radiant.in/wp-content/uploads/2023/06/Microsoft-Surface-Laptop-4-Banner.jpg' }
+    { id: 3, name: 'Lenovo ThinkPad X1', price: '$1299', image: 'https://store.lenovo.com/media/catalog/product/cache/90c9f6aca4e4b4913161c59294bbd070/2/0/20XWS1XJ00-1_1.webp' },
+    { id: 4, name: 'Asus ZenBook 14', price: '$1099', image: 'https://m.media-amazon.com/images/I/71d0ewMRJNL._AC_UF1000,1000_QL80_.jpg' },
+    { id: 5, name: 'Microsoft Surface Laptop 4', price: '$1299', image: 'https://radiant.in/wp-content/uploads/2023/06/Microsoft-Surface-Laptop-4-Banner.jpg' }
   ],
   headphones: [
     { id: 1, name: 'AirPods Pro', price: '$249', image: 'https://www.action.pk/cdn/shop/products/LYCiR8OBRB_2048x.jpg?v=1705925095' },
