@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -28,7 +29,7 @@ body {
   object-fit: cover;
   position: absolute;
   top: -30px;
-  left: -200%;
+  left: 50%;
   transform: translateX(-50%);
   transition: transform 0.3s ease-in-out;
 }
@@ -63,6 +64,26 @@ body {
   margin-right: 5px;
 }
 
+.cart-badge {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+/* Headings */
+.heading-white {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
 /* Home Page */
 .home-page {
   background-image: url('https://img.freepik.com/premium-photo/purple-background-with-camera-camera-with-purple-light_962508-19052.jpg');
@@ -76,33 +97,18 @@ body {
   padding: 20px;
 }
 
-.text-center {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 40px;
-}
-
 .home-page h4 {
   font-size: 2rem;
   font-weight: bold;
   color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-.home-page .d-flex {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.home-page .d-flex img {
+.category-img {
   height: 300px;
+  width: 100%;
   object-fit: cover;
   border-radius: 10px;
-}
-
-.home-page .w-100 {
-  max-width: 100%;
 }
 
 /* Products Page */
@@ -123,12 +129,14 @@ body {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .products-page section h3 {
   color: #fff;
   font-size: 2rem;
   margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .products-page .card {
@@ -188,6 +196,7 @@ body {
   color: #333;
   text-align: center;
   margin-bottom: 40px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .addcart-page .card {
@@ -323,7 +332,7 @@ body {
     height: 250px;
   }
 
-  .text-center {
+  .heading-white {
     font-size: 2rem;
   }
 
