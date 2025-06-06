@@ -8,27 +8,37 @@ function Header() {
     <Navbar bg="dark" variant="dark" expand="lg" className="navbar-wow">
       <Container>
 
-        <Navbar.Brand as={Link} to="/" className="navbar-brand d-flex align-items-center">
+        {/* Brand Logo and Title */}
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
             src="https://img.freepik.com/premium-vector/gadget-mobile-store-logo-branding-icon_1152716-1405.jpg"
             alt="MyStore Logo"
             className="navbar-logo"
+            style={{
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              marginRight: '10px'
+            }}
           />
-          <span className="navbar-brand-text ms-2">MyStore</span>
+          <span className="navbar-title text-white fs-4">MyStore</span>
         </Navbar.Brand>
 
+        {/* Navbar Toggle */}
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
 
+          {/* Navigation Links */}
           <Nav className="ms-auto navbar-links">
             <NavLink className="nav-link" to="/products">
-              <span className="nav-link-text">Products</span>
+              Products
             </NavLink>
 
             <NavLink className="nav-link d-flex align-items-center" to="/addcart">
               <FaShoppingCart className="cart-icon me-1" />
-              <span className="nav-link-text">Cart</span>
-              {/* Optional cart count badge */}
+              Cart
+              {/* Uncomment if you want cart badge */}
               {/* <Badge bg="light" text="dark" className="ms-1">3</Badge> */}
             </NavLink>
           </Nav>
