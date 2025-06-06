@@ -15,7 +15,7 @@ body {
 .navbar-brand {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end; /* Changed from center to flex-end */
   padding: 0;
   position: relative;
   z-index: 10;
@@ -27,15 +27,12 @@ body {
   border-radius: 50%;
   margin-top: 30px;
   object-fit: cover;
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Removed position: absolute and transform */
   transition: transform 0.3s ease-in-out;
 }
 
 .navbar-logo:hover {
-  transform: translateX(-50%) scale(1.1);
+  transform: scale(1.1); /* Removed translateX */
 }
 
 .navbar {
@@ -343,6 +340,6 @@ body {
   .navbar-logo {
     width: 120px;
     height: 120px;
-    top: -20px;
+    margin-top: 10px; /* adjusted from top since position absolute removed */
   }
 }
