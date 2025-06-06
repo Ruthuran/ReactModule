@@ -1,52 +1,60 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
-import { FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Image } from 'react-bootstrap';
+import './styles.css';
 
-function Header() {
+function Home() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="navbar-wow">
-      <Container>
+    <Container fluid className="home-page p-4">
+      <h2 className="text-center text-white mb-5">Welcome to Our Store</h2>
 
-        {/* Brand Logo and Title */}
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-          <img
-            src="https://img.freepik.com/premium-vector/gadget-mobile-store-logo-branding-icon_1152716-1405.jpg"
-            alt="MyStore Logo"
-            className="navbar-logo"
-            style={{
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              marginRight: '10px'
-            }}
-          />
-          <span className="navbar-title text-white fs-4">MyStore</span>
-        </Navbar.Brand>
+      <Row className="justify-content-center">
+        {/* Phones */}
+        <Col md={4} className="mb-4 d-flex flex-column align-items-center">
+          <h4 className="text-white mb-3">Phones</h4>
+          <Link to="/products/phones" aria-label="Browse Phones">
+            <Image
+              src="https://www.91-cdn.com/hub/wp-content/uploads/2023/12/Top-phone-brands.png"
+              alt="Phones"
+              className="category-img"
+              rounded
+            />
+          </Link>
+        </Col>
 
-        {/* Navbar Toggle */}
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav">
+        {/* Laptops */}
+        <Col md={4} className="mb-4 d-flex flex-column align-items-center">
+          <h4 className="text-white mb-3">Laptops</h4>
+          <Link to="/products/laptops" aria-label="Browse Laptops">
+            <Image
+              src="https://i.rtings.com/assets/pages/ZRskDBBI/best-laptop-brands-20230420-3-medium.jpg?format=auto"
+              alt="Laptops"
+              className="category-img"
+              rounded
+            />
+          </Link>
+        </Col>
 
-          {/* Navigation Links */}
-          <Nav className="ms-auto navbar-links">
-            <NavLink className="nav-link" to="/products">
-              Products
-            </NavLink>
+        {/* Headphones */}
+        <Col md={4} className="mb-4 d-flex flex-column align-items-center">
+          <h4 className="text-white mb-3">Headphones</h4>
+          <Link to="/products/headphones" aria-label="Browse Headphones">
+            <Image
+              src="https://www.livemint.com/lm-img/img/2024/09/12/1600x900/earphones_and_headphones_1726128766209_1726128770170.jpg"
+              alt="Headphones"
+              className="category-img"
+              rounded
+            />
+          </Link>
+        </Col>
+      </Row>
 
-            <NavLink className="nav-link d-flex align-items-center" to="/addcart">
-              <FaShoppingCart className="cart-icon me-1" />
-              Cart
-              {/* Uncomment if you want cart badge */}
-              {/* <Badge bg="light" text="dark" className="ms-1">3</Badge> */}
-            </NavLink>
-          </Nav>
-
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      {/* Footer */}
+      <footer className="text-center mt-5 py-3 border-top bg-light">
+        <p className="mb-0">&copy; 2025 Our Store. All rights reserved.</p>
+      </footer>
+    </Container>
   );
 }
 
-export default Header;
+export default Home;
