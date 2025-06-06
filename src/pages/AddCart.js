@@ -7,8 +7,8 @@ const exchangeRate = 83;
 
 function AddCart() {
   const [cart, setCart] = useState([]);
-  const [showModal, setShowModal] = useState(false); 
-  const [successModal, setSuccessModal] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
   const [customerDetails, setCustomerDetails] = useState({ name: '', address: '', phone: '' });
   const navigate = useNavigate();
 
@@ -16,7 +16,6 @@ function AddCart() {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(storedCart);
   }, []);
-
 
   const getPriceInINR = (price) => parseFloat(price.replace('$', '').replace(',', '')) * exchangeRate;
 
@@ -30,28 +29,40 @@ function AddCart() {
     const updatedCart = [...cart];
     const productIndex = updatedCart.findIndex(item => item.id === productId);
     if (productIndex !== -1) {
-      updatedCart[productIndex].quantity += action === 'increase' ? 1 : -1;
+      const currentQty = updatedCart[productIndex].quantity;
+      if (action === 'increase') {
+        updatedCart[productIndex].quantity = currentQty + 1;
+      } else if (action === 'decrease' && currentQty > 1) {
+        updatedCart[productIndex].quantity = currentQty - 1;
+      }
       setCart(updatedCart);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   };
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCustomerDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  
   const handlePlaceOrder = () => {
-    if (!customerDetails.name || !customerDetails.address || !customerDetails.phone) {
+    const { name, address, phone } = customerDetails;
+
+    if (!name || !address || !phone) {
       alert('Please fill in all details');
-    } else {
-      console.log('Customer Details:', customerDetails);
-      localStorage.setItem('cart', JSON.stringify([])); 
-      setCart([]); 
-      setSuccessModal(true); 
+      return;
     }
+
+    if (!/^\d{10}$/.test(phone)) {
+      alert('Please enter a valid 10-digit phone number');
+      return;
+    }
+
+    console.log('Customer Details:', customerDetails);
+    localStorage.setItem('cart', JSON.stringify([]));
+    setCart([]);
+    setShowModal(false);
+    setSuccessModal(true);
   };
 
   const handleRedirect = () => {
@@ -73,9 +84,13 @@ function AddCart() {
                   <Card.Title>{product.name}</Card.Title>
                   <Card.Text>Price: ₹{getPriceInINR(product.price).toFixed(2)}</Card.Text>
                   <Card.Text>Quantity: {product.quantity}</Card.Text>
-                  <Button variant="danger" onClick={() => removeFromCart(product.id)}>Remove</Button>
-                  <Button variant="info" onClick={() => updateQuantity(product.id, 'increase')} className="ms-2">+</Button>
-                  <Button variant="warning" onClick={() => updateQuantity(product.id, 'decrease')} className="ms-2">-</Button>
+                  <div className="d-flex justify-content-between flex-wrap">
+                    <Button variant="danger" onClick={() => removeFromCart(product.id)}>Remove</Button>
+                    <div className="mt-2 mt-md-0">
+                      <Button variant="info" onClick={() => updateQuantity(product.id, 'increase')} className="me-2">+</Button>
+                      <Button variant="warning" onClick={() => updateQuantity(product.id, 'decrease')}>-</Button>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
@@ -85,23 +100,21 @@ function AddCart() {
         <p>Your cart is empty.</p>
       )}
 
-      <Button variant="secondary" onClick={() => navigate('/')} className="mt-4">
-        Continue Shopping
-      </Button>
+      <div className="mt-4">
+        <Button variant="secondary" onClick={() => navigate('/')}>Continue Shopping</Button>{' '}
+        {cart.length > 0 && (
+          <Button variant="success" onClick={() => setShowModal(true)}>Place Order</Button>
+        )}
+      </div>
 
-      {cart.length > 0 && (
-        <Button variant="success" onClick={() => setShowModal(true)} className="mt-4">
-          Place Order
-        </Button>
-      )}
-
+      {/* Delivery Details Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Delivery Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formName">
+            <Form.Group controlId="formName" className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
@@ -112,7 +125,7 @@ function AddCart() {
               />
             </Form.Group>
 
-            <Form.Group controlId="formAddress">
+            <Form.Group controlId="formAddress" className="mb-3">
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
@@ -141,7 +154,7 @@ function AddCart() {
         </Modal.Footer>
       </Modal>
 
-      
+      {/* Order Success Modal */}
       <Modal show={successModal} onHide={() => setSuccessModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Order Successful</Modal.Title>
