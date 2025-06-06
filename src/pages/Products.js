@@ -42,10 +42,12 @@ function Products() {
   }, []);
 
   const getPriceInINR = (price) => {
-    if (price && typeof price === 'string') {
-      return parseFloat(price.replace('$', '').replace(',', '')) * exchangeRate;
-    }
-    return 0;
+    const usd = parseFloat(price.replace('$', '').replace(',', ''));
+    const inr = usd * exchangeRate;
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR'
+    }).format(inr);
   };
 
   const addToCart = (product) => {
@@ -62,88 +64,49 @@ function Products() {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const getCategoryTitle = (category) => {
-    switch (category) {
-      case 'phones':
-        return 'Mobile Phones';
-      case 'laptops':
-        return 'Laptops';
-      case 'headphones':
-        return 'Headphones';
-      default:
-        return 'All Products';
+  const getCategoryTitle = (cat) => {
+    switch (cat) {
+      case 'phones': return 'Mobile Phones';
+      case 'laptops': return 'Laptops';
+      case 'headphones': return 'Headphones';
+      default: return 'All Products';
     }
   };
+
+  const renderProductSection = (type, title) => (
+    <section key={type}>
+      <h3>{title}</h3>
+      <Row className="mt-4">
+        {productsData[type].map((product) => (
+          <Col md={4} key={product.id} className="mb-4">
+            <Card>
+              <Card.Img variant="top" src={product.image} alt={product.name} />
+              <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>Price: {getPriceInINR(product.price)}</Card.Text>
+                <Button variant="primary" onClick={() => addToCart(product)}>
+                  Add to Cart
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </section>
+  );
+
+  const availableCategories = Object.keys(productsData);
+  const validCategory = category && availableCategories.includes(category);
 
   return (
     <Container className="mt-4 products-page">
       <h2>{getCategoryTitle(category)}</h2>
 
-      {category === 'phones' || !category ? (
-        <section>
-          <h3>Mobile Phones</h3>
-          <Row className="mt-4">
-            {productsData.phones.map((product) => (
-              <Col md={4} key={product.id} className="mb-4">
-                <Card>
-                  <Card.Img variant="top" src={product.image} alt={product.name} />
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>Price: ₹{getPriceInINR(product.price).toFixed(2)}</Card.Text>
-                    <Button variant="primary" onClick={() => addToCart(product)}>
-                      Add to Cart
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </section>
-      ) : null}
-
-      {category === 'laptops' || !category ? (
-        <section>
-          <h3>Laptops</h3>
-          <Row className="mt-4">
-            {productsData.laptops.map((product) => (
-              <Col md={4} key={product.id} className="mb-4">
-                <Card>
-                  <Card.Img variant="top" src={product.image} alt={product.name} />
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>Price: ₹{getPriceInINR(product.price).toFixed(2)}</Card.Text>
-                    <Button variant="primary" onClick={() => addToCart(product)}>
-                      Add to Cart
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </section>
-      ) : null}
-
-      {category === 'headphones' || !category ? (
-        <section>
-          <h3>Headphones</h3>
-          <Row className="mt-4">
-            {productsData.headphones.map((product) => (
-              <Col md={4} key={product.id} className="mb-4">
-                <Card>
-                  <Card.Img variant="top" src={product.image} alt={product.name} />
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>Price: ₹{getPriceInINR(product.price).toFixed(2)}</Card.Text>
-                    <Button variant="primary" onClick={() => addToCart(product)}>
-                      Add to Cart
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </section>
-      ) : null}
+      {validCategory
+        ? renderProductSection(category, getCategoryTitle(category))
+        : availableCategories.map(cat =>
+            renderProductSection(cat, getCategoryTitle(cat))
+          )}
     </Container>
   );
 }
